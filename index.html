@@ -136,9 +136,10 @@ header.on{background:#050505b3;backdrop-filter:blur(14px);-webkit-backdrop-filte
   -webkit-backdrop-filter:blur(16px) saturate(160%);
   box-shadow:0 8px 32px rgba(0,0,0,.37);
 }
-/* 1230 e nao 1120: com "Depoimentos" a pilula ganhou ~110px, e no breakpoint
-   anterior ela encostava no botao de CTA a direita */
-@media (min-width:1230px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
+/* 1130: a pilula tem 5 itens e cabe quase no mesmo espaco dos 5 originais
+   ("Depoimentos" entrou no lugar de "O que trava"). Abaixo disso ela
+   encosta no botao de CTA a direita. */
+@media (min-width:1130px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .pill{background:rgba(20,20,26,.92)}
 }
@@ -472,7 +473,6 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 
     <nav class="pill" aria-label="Navegação principal">
       <a href="#imersoes">Imersões</a>
-      <a href="#problema">O que trava</a>
       <a href="#conduz">Quem conduz</a>
       <a href="#local">Onde acontece</a>
       <a href="#depoimentos">Depoimentos</a>
@@ -490,7 +490,6 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 
   <nav class="mnav" aria-label="Navegação mobile">
     <a href="#imersoes">Imersões</a>
-    <a href="#problema">O que trava</a>
     <a href="#conduz">Quem conduz</a>
     <a href="#local">Onde acontece</a>
     <a href="#depoimentos">Depoimentos</a>
