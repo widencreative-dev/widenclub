@@ -7,7 +7,7 @@
 <meta name="description" content="Duas imersões presenciais em Vila Velha/ES: Prospecção &amp; Vendas e Liderança &amp; Gestão de Pessoas. 4 horas, turma de até 8 pessoas, plano de ação na mão.">
 <meta property="og:title" content="Widen Club | Imersões presenciais para empresários">
 <meta property="og:description" content="Prospecção &amp; Vendas com Nathan Sena. Liderança &amp; Gestão de Pessoas com Karen Kiel. Turmas de até 8 pessoas, em Vila Velha/ES.">
-<meta property="og:image" content="img/hero-kv.jpg">
+<meta property="og:image" content="img/imers%C3%A3o%20widen%20club.jpg">
 <meta property="og:image:width" content="1376">
 <meta property="og:image:height" content="768">
 <meta property="og:type" content="website">
@@ -136,9 +136,9 @@ header.on{background:#050505b3;backdrop-filter:blur(14px);-webkit-backdrop-filte
   -webkit-backdrop-filter:blur(16px) saturate(160%);
   box-shadow:0 8px 32px rgba(0,0,0,.37);
 }
-/* 1120 e nao 1060: com o rotulo mais longo no botao, a pilula central
-   chegava a 9px dele antes de haver espaco para os dois */
-@media (min-width:1120px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
+/* 1230 e nao 1120: com "Depoimentos" a pilula ganhou ~110px, e no breakpoint
+   anterior ela encostava no botao de CTA a direita */
+@media (min-width:1230px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .pill{background:rgba(20,20,26,.92)}
 }
@@ -330,6 +330,56 @@ header.open .mnav{display:flex}
 .loc .v{margin-top:16px;font-size:clamp(20px,2vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .loc .x{margin-top:10px;font-size:15px;line-height:1.6;color:var(--mut)}
 
+/* ---------- depoimentos (parede de cartoes em cascata) ---------- */
+/* mesmo cabecalho da galeria: titulo a esquerda, texto de apoio a direita */
+.dep-intro{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.dep-intro .desc{margin:0;font-size:clamp(15px,1.4vw,19px);line-height:1.55;color:var(--mut);max-width:420px;text-wrap:pretty}
+/* a parede: tres colunas que rolam sozinhas, mascaradas no topo e na base */
+.dep-wall{display:grid;grid-template-columns:1fr;gap:clamp(12px,1.4vw,20px);
+  max-height:400px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent)}
+@media (min-width:860px){.dep-wall{grid-template-columns:repeat(3,1fr)}}
+/* no mobile uma coluna basta: as outras duas triplicavam a animacao sem mostrar mais conteudo */
+@media (max-width:859px){.dep-col:nth-child(n+2){display:none}}
+.dep-col{overflow:hidden}
+@media (hover:hover) and (pointer:fine){.dep-col:hover .dep-track{animation-play-state:paused}}
+.dep-track{display:flex;flex-direction:column;animation:depScroll linear infinite}
+.dep-col.rev .dep-track{animation-direction:reverse}
+/* mesma receita dos outros carrosseis: pausado fora da tela, will-change so enquanto anima */
+.dep-track.pz{animation-play-state:paused}
+.dep-track:not(.pz){will-change:transform}
+/* o espaco entre cartoes e margin, nao gap: com gap o translate de -50% erra
+   metade do vao e a emenda do loop aparece a cada volta */
+@keyframes depScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-50%,0)}}
+@media (prefers-reduced-motion:reduce){
+  .dep-wall{max-height:none;-webkit-mask-image:none;mask-image:none}
+  .dep-track{animation:none}
+}
+.dep-card{flex:0 0 auto;min-height:200px;margin:0 0 clamp(12px,1.4vw,20px);overflow:hidden;
+  padding:clamp(20px,2.2vw,26px);border:1px solid var(--ln);border-radius:clamp(14px,1.4vw,20px);background:#0D0D0D}
+.dep-card .hd{display:flex;align-items:flex-start;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--ln)}
+.dep-card .av{flex:0 0 auto;width:38px;height:38px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:var(--a);color:var(--bg);font-size:12px;font-weight:800;letter-spacing:-.01em}
+.dep-card .av.pic{background:#1A1A1A}
+.dep-card .av img{width:100%;height:100%;object-fit:cover}
+.dep-card.ph .av{background:#1A1A1A;color:var(--dim)}
+.dep-card .who{min-width:0;flex:1}
+.dep-card .nm{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* estrelas em ambar e o G de 4 cores: as unicas cores fora da paleta no site
+   inteiro. Sao a prova de terceiro - em lima deixariam de ser reconheciveis
+   como uma avaliacao do Google. */
+.dep-card .rt{display:flex;align-items:center;gap:1px;margin:4px 0 0;line-height:0}
+.dep-card .rt svg{flex:0 0 auto;width:13px;height:13px;fill:#FBBC04}
+.dep-card.ph .rt svg{fill:#2A2A2A}
+.dep-card .meta{margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-wrap:pretty}
+.dep-card .gg{flex:0 0 auto;width:17px;height:17px;margin-left:auto;line-height:0}
+.dep-card .gg svg{width:100%;height:100%}
+.dep-card.ph .gg{opacity:.35}
+.dep-card .qt{margin:15px 0 0;font-size:15px;line-height:1.6;color:var(--mut);
+  display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.dep-card.ph .qt{font-style:italic;color:var(--dim)}
+
 /* ---------- faq ---------- */
 .faq-wrap{display:flex;flex-wrap:wrap;gap:clamp(30px,4vw,64px)}
 .faq-l{flex:1 1 300px;min-width:0}
@@ -379,7 +429,6 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 .f-bot a{color:var(--dim);transition:color .2s ease}
 .f-bot a:hover{color:var(--a)}
 
-
 /* ---------- ajustes de mobile ---------- */
 @media (max-width:759px){
   /* grain: overlay fixo em blend mode recompoe a tela inteira a cada frame de scroll.
@@ -426,6 +475,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
       <a href="#problema">O problema</a>
       <a href="#conduz">Quem conduz</a>
       <a href="#local">Onde acontece</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
     </nav>
 
@@ -443,6 +493,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     <a href="#problema">O problema</a>
     <a href="#conduz">Quem conduz</a>
     <a href="#local">Onde acontece</a>
+    <a href="#depoimentos">Depoimentos</a>
     <a href="#faq">FAQ</a>
     <a class="mnav-cta" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">Quero participar</a>
   </nav>
@@ -451,7 +502,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 <main>
 <!-- ================= HERO ================= -->
 <section id="topo" class="hero">
-  <img class="hero-bg" src="img/hero-kv.jpg" width="1376" height="768" fetchpriority="high" decoding="async" alt="Nathan Sena e Karen Kiel, que conduzem as imersões do Widen Club, com uma turma ao fundo">
+  <img class="hero-bg" src="img/imers%C3%A3o%20widen%20club.jpg" width="1376" height="768" fetchpriority="high" decoding="async" alt="Nathan Sena e Karen Kiel, que conduzem as imersões do Widen Club, com uma turma ao fundo">
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-ring" aria-hidden="true"></div>
 
@@ -503,20 +554,20 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
       <div class="im-media" data-r="scale" data-d="150">
         <div class="im-strip">
           <div class="im-track">
-        <figure><img src="img/v1.jpg" alt="Nathan Sena conduzindo a imersão" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v2.jpg" alt="Turma acompanhando a apresentação" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v3.jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v4.jpg" alt="Conteúdo aplicado ao vivo" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v5.jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v6.jpg" alt="Turma reunida na sala" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/v7.jpg" alt="Grupo reduzido em volta da mesa" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v3.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v4.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(7).jpg" alt="Nathan Sena conduzindo a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(8).jpg" alt="Turma acompanhando a apresentação" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(9).jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(10).jpg" alt="Conteúdo aplicado ao vivo" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20vendas%20presencial%20(1).jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(11).jpg" alt="Turma reunida na sala" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(6).jpg" alt="Grupo reduzido em volta da mesa" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(7).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(8).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(9).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(10).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(1).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(11).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(6).jpg" alt="" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </div>
@@ -541,18 +592,18 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
       <div class="im-media" data-r="scale" data-d="150">
         <div class="im-strip">
           <div class="im-track">
-        <figure><img src="img/k6.jpg" alt="Karen Kiel conduzindo a imersão de Liderança e Gestão de Pessoas" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/k1.jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/k4.jpg" alt="Karen Kiel conduzindo a aula para a turma" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/k3.jpg" alt="Turma acompanhando a apresentação da Karen Kiel" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/k2.jpg" alt="Karen Kiel durante a imersão" loading="lazy" decoding="async"></figure>
-        <figure><img src="img/k5.jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k6.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k4.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k2.jpg" alt="" loading="lazy" decoding="async"></figure>
-        <figure aria-hidden="true"><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(1).jpg" alt="Karen Kiel conduzindo a imersão de Liderança e Gestão de Pessoas" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(2).jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20vendas%20presencial%20(4).jpg" alt="Karen Kiel conduzindo a aula para a turma" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20vendas%20presencial%20(3).jpg" alt="Turma acompanhando a apresentação da Karen Kiel" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20vendas%20presencial%20(2).jpg" alt="Karen Kiel durante a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/curso%20de%20vendas%20presencial%20(5).jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(1).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(2).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(4).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(3).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(2).jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(5).jpg" alt="" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </div>
@@ -625,39 +676,39 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     </div>
 
     <div class="mural">
-      <div class="cell c2 r2" data-r="scale"><img src="img/v2.jpg" alt="Nathan Sena conduzindo a imersão para a turma" loading="lazy" decoding="async"></div>
-      <div class="cell" data-r="scale" data-d="60"><img src="img/k1.jpg" alt="Karen Kiel conduzindo a imersão" loading="lazy" decoding="async"></div>
-      <div class="cell r2" data-r="scale" data-d="120"><img src="img/v5.jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></div>
-      <div class="cell" data-r="scale" data-d="180"><img src="img/l2.jpg" alt="Dinâmica em grupo na imersão" loading="lazy" decoding="async"></div>
-      <div class="cell c2" data-r="scale" data-d="240"><img src="img/k5.jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></div>
-      <div class="cell" data-r="scale" data-d="300"><img src="img/v3.jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></div>
-      <div class="cell" data-r="scale" data-d="360"><img src="img/k3.jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></div>
-      <div class="cell c2" data-r="scale" data-d="420"><img src="img/l6.jpg" alt="Turma interagindo durante a atividade" loading="lazy" decoding="async"></div>
+      <div class="cell c2 r2" data-r="scale"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(8).jpg" alt="Nathan Sena conduzindo a imersão para a turma" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="60"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(2).jpg" alt="Karen Kiel conduzindo a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell r2" data-r="scale" data-d="120"><img src="img/curso%20de%20vendas%20presencial%20(1).jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="180"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(4).jpg" alt="Dinâmica em grupo na imersão" loading="lazy" decoding="async"></div>
+      <div class="cell c2" data-r="scale" data-d="240"><img src="img/curso%20de%20vendas%20presencial%20(5).jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="300"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(9).jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="360"><img src="img/curso%20de%20vendas%20presencial%20(3).jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></div>
+      <div class="cell c2" data-r="scale" data-d="420"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(5).jpg" alt="Turma interagindo durante a atividade" loading="lazy" decoding="async"></div>
     </div>
   </div>
 
   <div class="mq" aria-label="Fotos das turmas">
     <div class="mq-t">
-      <figure><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
-      <figure><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
-      <figure><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
-      <figure><img src="img/l2.jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
-      <figure><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
-      <figure><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
-      <figure><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
-      <figure><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
-      <figure><img src="img/l6.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
-      <figure><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/l2.jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/l6.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
-      <figure aria-hidden="true"><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(8).jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(2).jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(7).jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(4).jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
+      <figure><img src="img/curso%20de%20vendas%20presencial%20(1).jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
+      <figure><img src="img/curso%20de%20vendas%20presencial%20(3).jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
+      <figure><img src="img/curso%20de%20vendas%20presencial%20(5).jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(11).jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(5).jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
+      <figure><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(6).jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(8).jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(2).jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(7).jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(4).jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(1).jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(3).jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20vendas%20presencial%20(5).jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(11).jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(5).jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(6).jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
     </div>
   </div>
 
@@ -680,7 +731,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     </div>
     <div class="hosts">
       <article class="host" data-r="up">
-        <div class="ph"><img src="img/nathan.jpg" width="864" height="1152" style="--focus:3%" alt="Nathan Sena" loading="lazy" decoding="async"></div>
+        <div class="ph"><img src="img/como%20prospectar%20clientes.jpg" width="864" height="1152" style="--focus:3%" alt="Nathan Sena" loading="lazy" decoding="async"></div>
         <div class="host-txt">
           <p class="role" data-fit="7">GESTOR &amp; LÍDER COMERCIAL · WIDEN</p>
           <h3>Nathan<br>Sena</h3>
@@ -689,7 +740,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
         </div>
       </article>
       <article class="host" data-r="up" data-d="140">
-        <div class="ph"><img src="img/karen.jpg" width="800" height="1072" style="--focus:9%" alt="Karen Kiel" loading="lazy" decoding="async"></div>
+        <div class="ph"><img src="img/curso%20de%20lideran%C3%A7a%20em%20vitoria%20(3).jpg" width="800" height="1072" style="--focus:9%" alt="Karen Kiel" loading="lazy" decoding="async"></div>
         <div class="host-txt">
           <p class="role" data-fit="7">LIDERANÇA &amp; GESTÃO DE PESSOAS · WIDEN</p>
           <h3>Karen<br>Kiel</h3>
@@ -739,6 +790,37 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 
 <div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
 
+<!-- ================= DEPOIMENTOS ================= -->
+<section class="sec panel" id="depoimentos">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.2vw,50px)">
+    <div class="dep-intro">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <span class="mono" data-r="up">DEPOIMENTOS</span>
+        <h2 data-r="up" data-d="100" style="font-size:clamp(32px,3.8vw,56px);line-height:1;max-width:560px">Quem já passou pela imersão</h2>
+      </div>
+      <p class="desc" data-r="up" data-d="200">O que empresários e gestores levaram da imersão para dentro da operação.</p>
+    </div>
+
+    <!-- Colunas em cascata montadas via JavaScript a partir de DEPOIMENTOS_ITEMS (script no fim do arquivo) -->
+    <div class="dep-wall" id="depWall" data-r="up" data-d="260" role="group" aria-label="Depoimentos de participantes"></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta">
+  <div class="halo" aria-hidden="true"></div>
+  <span class="mono" data-r="up" style="position:relative" data-fit="7">PRESENCIAL · VILA VELHA/ES · ATÉ 8 VAGAS</span>
+  <h2 data-r="up" data-d="100">Processo no comercial. Processo na gestão.</h2>
+  <div data-r="scale" data-d="200" style="position:relative;width:100%;max-width:680px;display:flex;justify-content:center">
+    <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">ENTRAR NA WIDEN CLUB</a>
+  </div>
+  <p class="hint" data-r="up" data-d="300" style="position:relative">Fale com a gente e descubra qual das duas imersões faz mais sentido para você.</p>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
 <!-- ================= FAQ ================= -->
 <section class="sec panel" id="faq">
   <div class="wrap faq-wrap">
@@ -779,19 +861,6 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     </div>
   </div>
 </section>
-
-<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
-
-<!-- ================= CTA FINAL ================= -->
-<section class="cta">
-  <div class="halo" aria-hidden="true"></div>
-  <span class="mono" data-r="up" style="position:relative" data-fit="7">PRESENCIAL · VILA VELHA/ES · ATÉ 8 VAGAS</span>
-  <h2 data-r="up" data-d="100">Processo no comercial. Processo na gestão.</h2>
-  <div data-r="scale" data-d="200" style="position:relative;width:100%;max-width:680px;display:flex;justify-content:center">
-    <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">ENTRAR NA WIDEN CLUB</a>
-  </div>
-  <p class="hint" data-r="up" data-d="300" style="position:relative">Fale com a gente e descubra qual das duas imersões faz mais sentido para você.</p>
-</section>
 </main>
 
 <!-- ================= FOOTER ================= -->
@@ -829,6 +898,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
             <li><a href="#problema">O problema</a></li>
             <li><a href="#galeria">Turmas anteriores</a></li>
             <li><a href="#local">Onde acontece</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
             <li><a href="#faq">Perguntas frequentes</a></li>
           </ul>
         </div>
@@ -973,10 +1043,153 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     els.forEach(function(el){ io.observe(el); });
   }
 
+  /* =======================================================================
+     DEPOIMENTOS - parede de cartoes em cascata
+     =======================================================================
+     Avaliacoes do Google. Para publicar uma nova, edite um item abaixo:
+       - name:    quem assina. Em null, o cartao fica como espaco reservado
+                  e nao cita ninguem.
+       - photo:   foto de perfil em img/ (96x96). Ausente, entram as iniciais
+                  do nome num circulo lima - e o caso de quem nao tem foto
+                  no Google.
+       - rating:  numero de estrelas de 1 a 5. Ausente, assume 5.
+       - context: origem da avaliacao, na linha sob o depoimento
+                  (ex.: "Avaliacao no Google")
+       - date:    mes e ano, na mesma linha (ex.: "marco de 2026")
+       - quote:   o relato em si
+     Os itens sao distribuidos entre 3 colunas e cada coluna e duplicada
+     para o loop fechar sem emenda. Mantenha pelo menos 6 itens: com menos,
+     a coluna fica mais curta que a janela e a volta do loop aparece.
+  ========================================================================= */
+  var DEPOIMENTOS_ITEMS = [
+    { name: "Helo Alves", photo: "img/curso%20de%20vendas%20em%20vila%20velha.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Maravilhosa, pretendo ter outras oportunidades de ter contato e conhecimentos com a Karen e Natan, excelentes profissionais." },
+    { name: "Lucas Matos", photo: "img/como%20contratar%20profissionais.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Fiz a imersão de prospecção e vendas da Widen e gostei muito! Aprendi coisas que já posso aplicar no meu dia a dia. Foi uma experiência que valeu a pena. Recomendo!" },
+    { name: "Consultoria Luciana Ribeiro", photo: "img/curso%20para%20rh.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Participei da Imersão Prospecção e Vendas. Além do conteúdo excelente a imersão contou com uma troca muito bacana entre os empresários presentes. Momento único e indispensável." },
+    { name: "Aghta Zanotelli", photo: "img/imers%C3%A3o%20em%20vila%20velha.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Gostaria de deixar meu elogio e agradecimento pela excelente experiência proporcionada durante o curso de Imersão em Vendas realizado na Widen." },
+    { name: "Davy Adame do Paço", photo: "img/curso%20de%20vendas%20no%20espirito%20santo.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Declaro meu profundo elogio à imersão realizada pela Widen, que demonstrou excelência excepcional em todas as suas etapas estruturais. O programa destacou-se pela alta qualidade dos processos de treinamento e pela organização impecável." },
+    { name: "Lívia Ramos", photo: "img/como%20vender%20mais%20na%20internet.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Lugar simplesmente para tornar as suas vendas melhores, time comprometido e eficiente no que faz e irá fazer por nós. Excelência resume essa empresa. Muito obrigada." },
+    { name: "Ozias Junior", photo: "img/imers%C3%A3o%20de%20rh.jpg", context: "Avaliação no Google", date: "setembro de 2026", quote: "Local incrível, com profissionais de excelência." },
+    { name: "Gustavo Neiva Teixeira", photo: "img/curso%20de%20lideran%C3%A7a%20em%20vitoria.jpg", context: "Avaliação no Google", date: "agosto de 2026", quote: "Imersão com conceitos muito claros e objetivos... indico." },
+    { name: "Delbert Emanuel Machado", photo: "img/gest%C3%A3o%20de%20pessoas.jpg", context: "Avaliação no Google", date: "junho de 2026", quote: "É um espaço que promove mudanças e desenvolve pessoas, empresas e marcas. Sem dúvidas a melhor escolha a ser feita." },
+    { name: "Letícia Isabel Carminatti", photo: "img/imers%C3%A3o%20de%20gestao%20de%20pessoas.jpg", context: "Avaliação no Google", date: "junho de 2026", quote: "Estão conosco desde a abertura da empresa! Muito profissionalismo e dedicação. Super indico!" }
+  ];
+
+  var depWall = document.getElementById('depWall');
+  if (depWall && DEPOIMENTOS_ITEMS.length) {
+    var DEP_COLS = 3;
+    /* o G de 4 cores inline: mesma pratica dos outros icones do site, e evita
+       a moldura branca que vem no PNG */
+    var DEP_STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+    var DEP_GOOGLE = '<svg viewBox="0 0 48 48" aria-hidden="true">'
+      + '<path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>'
+      + '<path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.3-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>'
+      + '<path fill="#FBBC05" d="M11.7 28.18C11.26 26.86 11 25.45 11 24s.26-2.86.7-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.36-5.7z"/>'
+      + '<path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.36 5.7c1.72-5.2 6.57-9.07 12.3-9.07z"/>'
+      + '</svg>';
+
+    var depInitials = function(name){
+      if (!name) return '?';
+      return name.trim().split(/\s+/).map(function(p){ return p.charAt(0); }).slice(0,2).join('').toUpperCase();
+    };
+
+    var depCard = function(item){
+
+      var card = document.createElement('figure');
+      card.className = 'dep-card' + (item.name ? '' : ' ph');
+
+      var head = document.createElement('div');
+      head.className = 'hd';
+
+      var av = document.createElement('span');
+      av.className = 'av' + (item.photo ? ' pic' : '');
+      av.setAttribute('aria-hidden','true');
+      if (item.photo) {
+        var im = document.createElement('img');
+        im.src = item.photo;
+        im.width = 96;
+        im.height = 96;
+        im.alt = '';
+        /* o observer das colunas troca lazy por eager quando a coluna entra na
+           tela: sem isso faltariam avatares nos cartoes ainda fora da janela */
+        im.loading = 'lazy';
+        im.decoding = 'async';
+        av.appendChild(im);
+      } else {
+        av.textContent = depInitials(item.name);
+      }
+
+      var who = document.createElement('figcaption');
+      who.className = 'who';
+      var nm = document.createElement('p');
+      nm.className = 'nm';
+      nm.textContent = item.name || 'Seu depoimento aqui';
+      var n = Math.max(1, Math.min(5, item.rating || 5));
+      var rt = document.createElement('p');
+      /* .rt e nao .st: a secao de storytelling ja usa .st e traria para ca
+         min-height de 210px, padding e border-top */
+      rt.className = 'rt';
+      rt.setAttribute('role','img');
+      rt.setAttribute('aria-label', n + ' de 5 estrelas');
+      rt.innerHTML = new Array(n + 1).join(DEP_STAR);
+      who.appendChild(nm);
+      who.appendChild(rt);
+
+      /* decorativa: a origem da avaliacao ja esta escrita na linha sob o depoimento,
+         entao o rotulo faria o leitor de tela repetir a mesma informacao */
+      var gg = document.createElement('span');
+      gg.className = 'gg';
+      gg.setAttribute('aria-hidden','true');
+      gg.innerHTML = DEP_GOOGLE;
+
+      head.appendChild(av);
+      head.appendChild(who);
+      head.appendChild(gg);
+
+      var qt = document.createElement('blockquote');
+      qt.className = 'qt';
+      qt.textContent = '“' + item.quote + '”';
+
+      card.appendChild(head);
+      card.appendChild(qt);
+      /* origem e data sob o depoimento, como na ficha da avaliacao no Google */
+      var meta = document.createElement('p');
+      meta.className = 'meta';
+      meta.textContent = item.date ? item.context + ' · ' + item.date : item.context;
+      card.appendChild(meta);
+      return card;
+    };
+
+    var depCols = [];
+    for (var c = 0; c < DEP_COLS; c++) depCols.push([]);
+    DEPOIMENTOS_ITEMS.forEach(function(item, i){ depCols[i % DEP_COLS].push(item); });
+
+    depCols.forEach(function(items, ci){
+      if (!items.length) return;
+      var col = document.createElement('div');
+      col.className = 'dep-col' + (ci % 2 === 1 ? ' rev' : '');
+      var track = document.createElement('div');
+      track.className = 'dep-track';
+      track.style.animationDuration = (34 + ci * 6) + 's';
+      track.style.animationDelay = (-(ci * 7)) + 's';
+      items.forEach(function(item){ track.appendChild(depCard(item)); });
+      /* a 2a copia existe so para o loop fechar sem emenda, entao sai da arvore de
+         acessibilidade: o leitor de tela nao repete os mesmos relatos. Com movimento
+         reduzido a coluna nao anima, logo nao precisa da copia. */
+      if (!reduce) items.forEach(function(item){
+        var dup = depCard(item);
+        dup.setAttribute('aria-hidden','true');
+        track.appendChild(dup);
+      });
+
+      col.appendChild(track);
+      depWall.appendChild(col);
+    });
+  }
+
   /* carrosseis: so animam enquanto estao na tela.
      Fora dela custavam bateria e frames no mobile, onde o pause no :hover nunca dispara. */
-  [].slice.call(document.querySelectorAll('.im-strip,.mq')).forEach(function(box){
-    var track = box.querySelector('.im-track,.mq-t');
+  [].slice.call(document.querySelectorAll('.im-strip,.mq,.dep-col')).forEach(function(box){
+    var track = box.querySelector('.im-track,.mq-t,.dep-track');
     if (!track) return;
     if (!('IntersectionObserver' in window)) return;
     track.classList.add('pz');
