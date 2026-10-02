@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Widen Club | Imersões presenciais para empresários</title>
+<meta name="description" content="Duas imersões presenciais em Vila Velha/ES: Prospecção &amp; Vendas e Liderança &amp; Gestão de Pessoas. 4 horas, turma de até 8 pessoas, plano de ação na mão.">
+<meta property="og:title" content="Widen Club | Imersões presenciais para empresários">
+<meta property="og:description" content="Prospecção &amp; Vendas com Nathan Sena. Liderança &amp; Gestão de Pessoas com Karen Kiel. Turmas de até 8 pessoas, em Vila Velha/ES.">
+<meta property="og:image" content="img/hero-kv.jpg">
+<meta property="og:image:width" content="1376">
+<meta property="og:image:height" content="768">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Widen Club">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{ --a:#D3FF28; --bg:#050505; --panel:#0A0A0A; --fg:#F5F5F5; --mut:#BDBDBD; --dim:#777; --ln:#1E1E1E; --ln2:#141414; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+/* lenis */
+html.lenis,html.lenis body{height:auto}
+html.lenis{scroll-behavior:auto !important}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a{color:var(--fg);text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--a);color:var(--bg)}
+h1,h2,h3{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-.04em;line-height:.9}
+p{margin:0}
+
+@keyframes dcMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes dcPulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes dcGlow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+
+/* ---------- reveal ---------- */
+[data-r]{transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease}
+[data-r="up"]{opacity:0;transform:translateY(34px)}
+[data-r="fade"]{opacity:0}
+[data-r="line"]{opacity:0;transform:translateY(105%)}
+[data-r="scale"]{opacity:0;transform:scale(.96)}
+[data-r="blur"]{opacity:0;filter:blur(10px);transform:translateY(24px)}
+[data-r="x"]{transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.in[data-r]{opacity:1;transform:none;filter:none}
+.in[data-r="x"]{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:0s !important;transition-duration:0s !important}
+  [data-r]{opacity:1 !important;transform:none !important;filter:none !important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- primitives ---------- */
+.wrap{max-width:1280px;margin:0 auto;
+  padding-left:max(clamp(20px,4vw,48px),env(safe-area-inset-left));
+  padding-right:max(clamp(20px,4vw,48px),env(safe-area-inset-right))}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--dim)}
+.mono.acc{color:var(--a)}
+.lw{display:block;overflow:hidden;padding-top:.16em;margin-top:-.16em}
+.lw>span{display:block}
+/* FlowButton: círculo que expande, setas que deslizam, pill → 12px */
+.btn{
+  --arr:16px; --inset:18px;
+  appearance:none;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  background:var(--a);color:var(--bg);border:1.5px solid transparent;
+  font-family:Manrope,sans-serif;font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  padding:21px 34px;border-radius:100px;
+  transition:border-radius .6s cubic-bezier(.23,1,.32,1),border-color .6s cubic-bezier(.23,1,.32,1),color .6s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.95)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.btn .t{position:relative;z-index:1;translate:-12px 0;transition:translate .8s ease-out;white-space:nowrap}
+.btn .circle{
+  position:absolute;top:50%;left:50%;translate:-50% -50%;z-index:-1;
+  width:0;aspect-ratio:1;border-radius:50%;background:var(--bg);opacity:0;
+  transition:width .8s cubic-bezier(.19,1,.22,1),opacity .8s cubic-bezier(.19,1,.22,1)}
+.btn .arr{
+  position:absolute;width:var(--arr);height:var(--arr);z-index:2;fill:none;stroke:var(--bg);stroke-width:2;
+  transition:left .8s cubic-bezier(.34,1.56,.64,1),right .8s cubic-bezier(.34,1.56,.64,1),stroke .6s ease}
+.btn .arr.l{left:-25%}
+.btn .arr.r{right:var(--inset)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:#33333399}
+.btn.ghost .arr{stroke:var(--fg)}
+.btn.ghost .circle{background:var(--a)}
+/* o FlowButton so reage ao mouse: no touch o :hover gruda depois do toque */
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{border-radius:12px;color:var(--a);border-color:transparent}
+  .btn:hover .t{translate:12px 0}
+  .btn:hover .circle{width:135%;opacity:1}
+  .btn:hover .arr.l{left:var(--inset);stroke:var(--a)}
+  .btn:hover .arr.r{right:-25%;stroke:var(--a)}
+  .btn.ghost:hover{color:var(--bg);border-color:transparent}
+  .btn.ghost:hover .arr{stroke:var(--bg)}
+}
+.btn.sm{--arr:13px;--inset:13px;font-size:12px;padding:12px clamp(16px,2vw,24px)}
+@media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
+.sec{padding:clamp(56px,6.5vw,100px) 0;position:relative}
+.sec.panel{background:var(--panel)}
+/* divisória entre fatias: linha com selo de seta (decorativo, não clicável) */
+.divider{position:relative;height:1px;background:var(--ln);pointer-events:none;z-index:4}
+.divider span{position:absolute;left:50%;top:50%;translate:-50% -50%;
+  display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;
+  background:var(--bg);box-shadow:inset 0 0 0 1px var(--ln);color:var(--dim)}
+.divider svg{width:15px;height:15px}
+.hint{font-size:14px;color:var(--dim)}
+/* [data-fit]: nunca quebra a linha. Quando nao cabe, o JS reduz o corpo
+   ate caber no container (o valor do atributo e o piso em px). */
+[data-fit]{white-space:nowrap}
+
+#grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.055;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ---------- header (nav em pílula) ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,backdrop-filter .4s ease,border-color .4s ease;border-bottom:1px solid transparent}
+header.on{background:#050505b3;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:#ffffff14}
+.hrow{position:relative;max-width:1360px;margin:0 auto;height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-left:max(clamp(18px,4vw,40px),env(safe-area-inset-left));
+  padding-right:max(clamp(18px,4vw,40px),env(safe-area-inset-right))}
+.brand{display:flex;align-items:center}
+.brand img{height:32px;width:auto}
+/* --- glassmorphism --- */
+.pill{
+  display:none;align-items:center;gap:2px;padding:5px;border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  box-shadow:0 8px 32px rgba(0,0,0,.37);
+}
+/* 1120 e nao 1060: com o rotulo mais longo no botao, a pilula central
+   chegava a 9px dele antes de haver espaco para os dois */
+@media (min-width:1120px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .pill{background:rgba(20,20,26,.92)}
+}
+.pill a{padding:10px 15px;border-radius:999px;font-size:13px;font-weight:600;color:rgba(255,255,255,.78);white-space:nowrap;
+  transition:color .25s ease,background .25s ease,transform .4s cubic-bezier(.34,1.56,.64,1)}
+/* o item salta: a curva passa do alvo e volta, dai a sensacao de pulo.
+   3px cabem nos 5px de padding da pilula, entao nada vaza pela borda. */
+@media (hover:hover) and (pointer:fine){
+  .pill a:hover{color:#fff;background:rgba(255,255,255,.12);transform:translateY(-3px)}
+}
+.hcta{display:none;--arr:14px;--inset:14px;padding:13px 20px;font-size:12px}
+@media (min-width:560px){.hcta{display:inline-flex}}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);box-shadow:0 8px 32px rgba(0,0,0,.37);color:#ffffffe6;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle svg{width:19px;height:19px}
+.nav-toggle .x{display:none}
+header.open .nav-toggle .x{display:block}
+header.open .nav-toggle .m{display:none}
+@media (min-width:1120px){.nav-toggle{display:none}}
+.mnav{display:none;flex-direction:column;gap:2px;position:absolute;left:14px;right:14px;top:72px;padding:10px;border-radius:20px;background:rgba(10,10,10,.72);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);box-shadow:0 8px 32px rgba(0,0,0,.37)}
+header.open .mnav{display:flex}
+.mnav a{padding:13px 15px;border-radius:12px;font-size:14px;font-weight:600;color:#ffffffb3}
+.mnav a:hover{background:#ffffff0f;color:#fff}
+.mnav .mnav-cta{margin-top:6px;text-align:center;background:var(--a);color:var(--bg);font-weight:800}
+.mnav .mnav-cta:hover{background:var(--a);color:var(--bg)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;z-index:-2}
+.hero-veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,#050505f2 0%,#050505e0 26%,#0505054d 56%,#05050533 78%,#050505cc 94%,var(--bg) 100%),
+  radial-gradient(135% 85% at 50% 64%,transparent 38%,#050505b3 100%),
+  radial-gradient(55% 40% at 50% 4%,rgba(211,255,40,.09),transparent 70%)}
+.hero-ring{position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 1px #0000004d}
+.hero-body{position:relative;z-index:2;width:100%;padding:calc(76px + clamp(90px,21vh,240px)) 0 clamp(36px,6vh,72px)}
+/* mobile: menos ar no topo (CTA subia pra fora da dobra) e folga pra barra fixa */
+@media (max-width:759px){
+  .hero-body{padding:calc(76px + clamp(44px,8vh,104px)) 0 clamp(84px,11vh,112px)}
+  .hero-p{margin-top:20px}
+  .hero-cta{margin-top:30px}
+}
+.hero-mid{max-width:880px;margin:0 auto;text-align:center}
+/* tudo em em para o badge encolher como uma peca so, sem nunca quebrar linha */
+.badge{display:inline-flex;align-items:center;gap:.74em;padding:.45em 1.04em .45em .45em;margin-bottom:26px;border-radius:999px;background:#ffffff14;box-shadow:inset 0 0 0 1px #ffffff26;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:13.5px;white-space:nowrap}
+.badge-tag{display:inline-flex;align-items:center;padding:.3em 1em;border-radius:999px;background:var(--a);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:.74em;font-weight:500;letter-spacing:.14em}
+.badge-txt{font-size:1em;font-weight:500;color:#ffffffe6}
+.hero h1{font-size:clamp(26px,7vw,74px);line-height:1.04;letter-spacing:-.035em;color:var(--fg)}
+.hero h1>span{display:block;white-space:nowrap}
+@media (max-width:559px){.hero h1{letter-spacing:-.04em}}
+.hero h1 .u{color:var(--a)}
+.hero-p{max-width:620px;margin:24px auto 0;font-size:clamp(15.5px,1.35vw,18px);line-height:1.6;color:#ffffffc2;text-wrap:pretty}
+.hero-p b{color:var(--fg);font-weight:700}
+.hero-cta{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:38px}
+@media (min-width:560px){.hero-cta{flex-direction:row;justify-content:center;gap:18px}}
+.hero-sec{display:inline-flex;align-items:center;gap:9px;padding:14px 20px;border-radius:999px;font-size:14px;font-weight:600;color:#ffffffe0;transition:color .25s ease,gap .3s ease}
+.hero-sec:hover{color:var(--a);gap:14px}
+.hero-sec svg{width:16px;height:16px}
+
+/* ---------- imersões ---------- */
+/* empilhado por padrao; vira duas colunas no desktop */
+.im{position:relative;display:grid;gap:clamp(28px,3.5vw,56px);align-items:start;padding:clamp(36px,4vw,64px) 0;border-top:1px solid var(--ln)}
+.im:first-of-type{border-top:0}
+.im-txt{min-width:0;display:flex;flex-direction:column;gap:24px;position:relative;z-index:2}
+.im-media{min-width:0;position:relative;z-index:0}
+@media (min-width:900px){
+  .im{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .im .im-txt{grid-column:1;grid-row:1}
+  .im .im-media{grid-column:2;grid-row:1}
+  .im.rev .im-txt{grid-column:2;grid-row:1}
+  .im.rev .im-media{grid-column:1;grid-row:1}
+}
+/* carrossel que corre em direção ao título e some no gradiente */
+.im-strip{position:relative;overflow:hidden;--fade:26%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade),#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade),#000 100%)}
+.im.rev .im-strip{
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - var(--fade)),transparent 100%);
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - var(--fade)),transparent 100%)}
+/* o carrossel sangra para fora e invade a coluna de texto, correndo por tras dela */
+@media (min-width:900px){
+  .im .im-media{margin-right:calc(-1 * clamp(20px,4vw,48px));margin-left:clamp(-300px,-15vw,-120px)}
+  .im.rev .im-media{margin-left:calc(-1 * clamp(20px,4vw,48px));margin-right:clamp(-300px,-15vw,-120px)}
+  .im-strip{--fade:50%}
+}
+.im-track{display:flex;gap:14px;width:max-content;animation:imScrollL 46s linear infinite}
+.im.rev .im-track{animation-name:imScrollR}
+@media (hover:hover) and (pointer:fine){.im-media:hover .im-track{animation-play-state:paused}}
+/* carrosseis pausados por IntersectionObserver quando saem da tela.
+   O will-change so vale enquanto anima: pausado, a camada promovida so ocupa memoria. */
+.im-track.pz,.mq-t.pz{animation-play-state:paused}
+.im-track:not(.pz),.mq-t:not(.pz){will-change:transform}
+@keyframes imScrollL{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes imScrollR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+.im-track figure{margin:0;flex:0 0 auto}
+.im-track img{height:clamp(230px,27vw,360px);width:clamp(300px,34vw,470px);max-width:none;border-radius:22px;
+  object-fit:cover;object-position:center 38%;
+  filter:grayscale(.45) contrast(1.08);transition:filter .5s ease}
+@media (hover:hover) and (pointer:fine){.im-media:hover .im-track img{filter:grayscale(0) contrast(1.1)}}
+.im-no{font-size:clamp(64px,9vw,148px);font-weight:800;line-height:.78;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--a)}
+.im h2{font-size:clamp(34px,4.4vw,68px);line-height:.95}
+.im .who{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--a)}
+.im p.d{font-size:17px;line-height:1.65;color:var(--mut);max-width:520px}
+.im ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--ln);max-width:560px}
+.im li{display:flex;align-items:flex-start;gap:14px;padding:15px 0;border-bottom:1px solid var(--ln);font-size:16px;line-height:1.5}
+.im li b{flex:0 0 auto;width:7px;height:7px;background:var(--a);margin-top:8px}
+.im li strong{display:block;font-weight:800;letter-spacing:-.01em;color:var(--fg)}
+.im li em{display:block;margin-top:3px;font-style:normal;font-size:15px;line-height:1.55;color:var(--mut)}
+.im li.mais strong{color:var(--a)}
+.im li.mais b{border-radius:50%}
+
+/* ---------- problema (storytelling) ---------- */
+.st{position:relative;min-height:clamp(210px,30vh,310px);padding:clamp(34px,4.5vw,64px) 0;display:flex;align-items:center;overflow:hidden;border-top:1px solid #111}
+.st .word{position:absolute;left:0;right:0;top:50%;margin-top:-.5em;font-size:clamp(60px,13vw,210px);font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap;pointer-events:none;user-select:none;color:transparent;-webkit-text-stroke:1px #1A1A1A}
+.st .word.l{text-align:left}.st .word.r{text-align:right}.st .word.c{text-align:center}
+.st.fin .word{color:#1C1C1C;-webkit-text-stroke:0}
+.st-in{position:relative;width:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex}
+.st.e .st-in{justify-content:flex-end}
+.st-box{max-width:720px;display:flex;flex-direction:column;gap:18px}
+.st-box .i{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--dim)}
+.st.fin .st-box .i{color:var(--a)}
+.st-box p{font-size:clamp(24px,3.4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+
+/* ---------- galeria ---------- */
+.mural{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:clamp(150px,16vw,220px);grid-auto-flow:dense;gap:clamp(8px,1vw,14px)}
+.mural a,.mural div.cell{position:relative;overflow:hidden;background:#111}
+.mural img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.08);transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+@media (hover:hover) and (pointer:fine){.mural .cell:hover img{transform:scale(1.04);filter:grayscale(0)}}
+.c2{grid-column:span 2}.r2{grid-row:span 2}
+.mq{margin-top:clamp(12px,1.4vw,18px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq-t{display:flex;gap:clamp(8px,1vw,14px);width:max-content;animation:dcMarquee 42s linear infinite}
+@media (hover:hover) and (pointer:fine){.mq-t:hover{animation-play-state:paused}}
+.mq-t figure{margin:0;flex:0 0 auto;width:clamp(200px,22vw,320px);height:clamp(140px,15vw,220px);position:relative;overflow:hidden;border:1px solid var(--ln)}
+.mq-t img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6) contrast(1.06)}
+.mq-t figcaption{position:absolute;left:12px;bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#DDD;text-shadow:0 1px 8px #000}
+
+.gal-cta{margin-top:clamp(32px,4vw,52px);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px}
+.gal-cta .btn{--arr:15px;--inset:16px;font-size:13.5px;padding:19px 30px}
+
+/* ---------- quem conduz ---------- */
+/* cada host e uma linha: foto a esquerda, selo + nome + bio a direita */
+.hosts{display:flex;flex-direction:column;gap:clamp(44px,5.5vw,86px)}
+.host{display:grid;gap:clamp(22px,3.4vw,56px);align-items:center;grid-template-columns:minmax(0,1fr)}
+/* 1000 e nao 860: abaixo disso a coluna de texto caia para ~412px e a bio
+   quebrava em 7 linhas. Empilhado, ela usa a largura toda e cai para 4 */
+@media (min-width:1000px){.host{grid-template-columns:minmax(0,46fr) minmax(0,54fr)}}
+/* 4/3 equilibra a altura da foto com a do texto, mas so mostra 56% da altura da
+   imagem: cada foto define seu --focus para a cabeca nao encostar no topo */
+.host .ph{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:clamp(14px,1.4vw,20px);background:#0D0D0D;border:1px solid var(--ln)}
+.host .ph img{width:100%;height:100%;object-fit:cover;object-position:center var(--focus,6%);filter:grayscale(.35) contrast(1.06);transition:filter .5s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.host .ph.cut img{object-fit:contain;object-position:center bottom;filter:grayscale(.3) contrast(1.05)}
+@media (hover:hover) and (pointer:fine){.host:hover .ph img{filter:grayscale(0);transform:scale(1.02)}}
+.host-txt{min-width:0}
+.host .role{display:inline-flex;align-items:center;margin:0;padding:.55em 1.15em;border-radius:999px;
+  background:#ffffff0f;box-shadow:inset 0 0 0 1px #ffffff1f;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.16em;color:var(--a)}
+.host h3{margin-top:22px;font-size:clamp(32px,4vw,60px);line-height:.95}
+/* flex com fit-content para a margem vertical valer sem a caixa de linha do inline */
+.host-ig{display:flex;width:fit-content;align-items:center;gap:8px;margin-top:14px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--mut);
+  transition:color .25s ease}
+.host-ig svg{flex:0 0 auto;width:16px;height:16px}
+@media (hover:hover) and (pointer:fine){.host-ig:hover{color:var(--a)}}
+/* pretty evita a ultima linha orfa: na coluna estreita sobrava "resultados." sozinha */
+.host .bio{margin-top:16px;font-size:16px;line-height:1.65;color:var(--mut);max-width:520px;text-wrap:pretty}
+
+/* ---------- local ---------- */
+.ghost-word{position:absolute;right:-4vw;bottom:-5vw;font-size:clamp(140px,26vw,440px);font-weight:800;line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px var(--ln);pointer-events:none;user-select:none;white-space:nowrap}
+/* cards soltos: o gap agora e espaco real, nao o fio de 1px do grid */
+.locgrid{display:grid;gap:clamp(12px,1.4vw,18px);margin-top:clamp(22px,2.4vw,32px)}
+@media (min-width:760px){.locgrid{grid-template-columns:repeat(3,1fr)}}
+/* glassmorphism, mesma receita da pilula do header */
+.loc{position:relative;padding:clamp(24px,2.6vw,34px);border-radius:clamp(16px,1.6vw,22px);
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  box-shadow:0 8px 32px rgba(0,0,0,.37);
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,background .45s ease,border-color .45s ease}
+/* o card salta para a frente: sobe, cresce de leve e a sombra se abre */
+@media (hover:hover) and (pointer:fine){
+  .loc:hover{z-index:2;transform:translateY(-10px) scale(1.018);
+    background:rgba(255,255,255,.095);
+    border-color:rgba(255,255,255,.24);
+    box-shadow:0 26px 54px rgba(0,0,0,.58)}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .loc{background:rgba(20,20,26,.92)}
+}
+.loc .k{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--a)}
+.loc .v{margin-top:16px;font-size:clamp(20px,2vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.loc .x{margin-top:10px;font-size:15px;line-height:1.6;color:var(--mut)}
+
+/* ---------- faq ---------- */
+.faq-wrap{display:flex;flex-wrap:wrap;gap:clamp(30px,4vw,64px)}
+.faq-l{flex:1 1 300px;min-width:0}
+.faq-l .stk{position:sticky;top:110px;display:flex;flex-direction:column;gap:24px}
+.faq-r{flex:2 1 520px;min-width:0;border-bottom:1px solid var(--ln)}
+.qa{border-top:1px solid var(--ln)}
+.qa button{appearance:none;background:none;border:0;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(17px,2vw,24px) 0;text-align:left;color:var(--fg);font-family:Manrope,sans-serif;font-size:clamp(17px,1.6vw,22px);font-weight:700;letter-spacing:-.01em}
+.qa button:focus-visible{outline:2px solid var(--a);outline-offset:4px}
+.qa .ic{flex:0 0 auto;width:36px;height:36px;border:1px solid #2A2A2A;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:400;line-height:1;color:var(--dim);transition:transform .45s cubic-bezier(.2,.7,.2,1),color .3s ease,border-color .3s ease}
+.qa[open] .ic,.qa.open .ic{transform:rotate(45deg);color:var(--a);border-color:var(--a)}
+.qa .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.qa.open .panel{grid-template-rows:1fr}
+.qa .panel>div{overflow:hidden}
+.qa .panel p{padding:0 56px clamp(18px,2vw,26px) 0;font-size:16px;line-height:1.65;color:var(--mut);max-width:680px;opacity:0;transition:opacity .4s ease}
+.qa.open .panel p{opacity:1}
+
+/* ---------- cta ---------- */
+.cta{padding:clamp(60px,7.5vw,112px) clamp(20px,4vw,48px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;position:relative;overflow:hidden}
+.cta .halo{position:absolute;left:50%;top:50%;width:min(900px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(211,255,40,.14),transparent);pointer-events:none}
+.cta h2{position:relative;font-size:clamp(36px,6vw,92px);max-width:16ch}
+.cta .btn{--arr:20px;--inset:28px;position:relative;width:100%;max-width:680px;font-size:clamp(15px,2vw,22px);padding:clamp(24px,3vw,36px) 32px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6vw,84px) 0 clamp(26px,3vw,38px)}
+.f-top{display:flex;flex-direction:column;gap:clamp(34px,4vw,48px)}
+@media (min-width:1024px){.f-top{flex-direction:row;align-items:flex-start;justify-content:space-between;gap:clamp(40px,5vw,80px)}}
+.f-brand{display:flex;flex-direction:column;gap:22px;flex:1 1 300px;max-width:420px}
+.f-brand img{height:46px;width:auto}
+.f-brand p{font-size:14px;line-height:1.65;color:var(--mut)}
+.f-social{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:12px}
+.f-social a{display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1px solid var(--ln);border-radius:999px;color:var(--mut);transition:color .25s ease,border-color .25s ease,background .25s ease}
+.f-social a:hover{color:var(--bg);background:var(--a);border-color:var(--a)}
+.f-social svg{width:20px;height:20px;fill:currentColor}
+.f-cols{display:grid;gap:30px;flex:1 1 540px}
+@media (min-width:620px){.f-cols{grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px)}}
+.f-cols h3{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.18em;line-height:1.4;color:var(--a);margin:0 0 18px}
+.f-cols ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.f-cols a{font-size:14px;font-weight:500;color:var(--mut);transition:color .2s ease}
+.f-cols a:hover{color:var(--a)}
+.f-contact a{display:inline-flex;align-items:center;gap:9px}
+.f-contact svg{flex:0 0 auto;width:16px;height:16px;fill:currentColor;opacity:.75;transition:opacity .2s ease}
+.f-contact a:hover svg{opacity:1}
+.f-bot{margin-top:clamp(32px,4vw,52px);padding-top:24px;border-top:1px solid var(--ln);display:flex;flex-direction:column;gap:14px;font-size:12px;color:var(--dim)}
+@media (min-width:768px){.f-bot{flex-direction:row;align-items:center;justify-content:space-between}}
+.f-bot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+@media (min-width:768px){.f-bot ul{flex-direction:row;gap:26px}}
+.f-bot a{color:var(--dim);transition:color .2s ease}
+.f-bot a:hover{color:var(--a)}
+
+
+/* ---------- ajustes de mobile ---------- */
+@media (max-width:759px){
+  /* grain: overlay fixo em blend mode recompoe a tela inteira a cada frame de scroll.
+     Em .055 de opacidade num display denso o ganho visual nao paga o custo. */
+  #grain{display:none}
+
+  /* storytelling: 5 blocos de ate 310px viravam ~1500px de rolagem */
+  .st{min-height:clamp(170px,24vh,230px)}
+
+  /* carrossel das imersoes: cabe mais foto e o fade nao come 26% da faixa */
+  .im-strip{--fade:12%}
+  .im-track img{height:200px;width:262px;border-radius:16px}
+  .im-strip,.mq{contain:paint}
+
+  /* mural: 2 colunas com celulas mais altas, as fotos sao de grupo */
+  .mural{grid-auto-rows:min(48vw,200px)}
+
+  /* FAQ: 56px de recuo a direita custavam ~17% da linha */
+  .qa .panel p{padding-right:4px}
+
+  /* os dois CTAs longos da galeria nao cabem lado a lado */
+  .gal-cta{flex-direction:column;align-items:stretch}
+  .gal-cta .btn{width:100%;font-size:12.5px;padding:18px 24px}
+
+  /* alvos de toque no rodape */
+  .f-cols a,.f-bot a{display:inline-block;padding:4px 0}
+  .f-cols ul{gap:7px}
+  .f-social a{width:44px;height:44px}
+}
+</style>
+</head>
+<body>
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="hdr">
+  <div class="hrow">
+    <a class="brand" href="#topo" aria-label="Widen Club, início">
+      <img src="img/logo.png" width="520" height="264" alt="Widen Club">
+    </a>
+
+    <nav class="pill" aria-label="Navegação principal">
+      <a href="#imersoes">Imersões</a>
+      <a href="#problema">O problema</a>
+      <a href="#conduz">Quem conduz</a>
+      <a href="#local">Onde acontece</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="hactions">
+      <a class="btn sm hcta" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">CONHEÇA NOSSAS IMERSÕES</a>
+      <button class="nav-toggle" id="navBtn" aria-expanded="false" aria-label="Abrir menu">
+      <svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mnav" aria-label="Navegação mobile">
+    <a href="#imersoes">Imersões</a>
+    <a href="#problema">O problema</a>
+    <a href="#conduz">Quem conduz</a>
+    <a href="#local">Onde acontece</a>
+    <a href="#faq">FAQ</a>
+    <a class="mnav-cta" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">Quero participar</a>
+  </nav>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section id="topo" class="hero">
+  <img class="hero-bg" src="img/hero-kv.jpg" width="1376" height="768" fetchpriority="high" decoding="async" alt="Nathan Sena e Karen Kiel, que conduzem as imersões do Widen Club, com uma turma ao fundo">
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-ring" aria-hidden="true"></div>
+
+  <div class="hero-body">
+    <div class="wrap">
+      <div class="hero-mid">
+        <div class="badge" data-r="up" data-fit="8">
+          <span class="badge-tag">IMERSÃO</span>
+          <span class="badge-txt">Presencial · Vila Velha/ES · Turma exclusiva</span>
+        </div>
+
+        <h1 data-r="up" data-d="120"><span data-fit="15">Improviso não escala.</span><span data-fit="15">Processo, <span class="u">sim</span>.</span></h1>
+
+        <p class="hero-p" data-r="up" data-d="240">Duas imersões presenciais do Widen Club: <b>Prospecção &amp; Vendas</b> e <b>Liderança &amp; Gestão de Pessoas</b>. Quatro horas, turma de até 8 participantes e um plano de ação pronto para ser executado.</p>
+
+        <div class="hero-cta" data-r="up" data-d="360">
+          <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">QUERO PARTICIPAR</a>
+          <a class="hero-sec" href="#imersoes">Ver as imersões
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= IMERSÕES ================= -->
+<section class="sec" id="imersoes">
+  <div class="wrap">
+    <article class="im">
+      <div class="im-txt">
+        <span class="im-no" data-r="up">01</span>
+        <h2 data-r="up" data-d="80" data-fit="20">Prospecção<br>&amp; Vendas</h2>
+        <span class="who" data-r="up" data-d="140">COM NATHAN SENA</span>
+        <p class="d" data-r="up" data-d="200">Para empresários e times comerciais que querem sair do improviso e construir um processo de vendas organizado, previsível e escalável, sem depender só de indicação.</p>
+        <ul data-r="up" data-d="260">
+          <li><b></b><span><strong>Posicionamento comercial</strong><em>Cliente ideal, público prioritário e proposta de valor bem comunicada.</em></span></li>
+          <li><b></b><span><strong>Prospecção estratégica</strong><em>Como encontrar clientes, criar oportunidades e construir uma rotina comercial.</em></span></li>
+          <li><b></b><span><strong>Processo de vendas</strong><em>Jornada, funil, qualificação, follow-up e conversão estruturados.</em></span></li>
+          <li class="mais"><b></b><span><strong>E vários outros pontos</strong><em>O conteúdo completo é ajustado ao cenário da turma, ao vivo.</em></span></li>
+        </ul>
+        <div data-r="up" data-d="320">
+          <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Imers%C3%A3o%20Prospec%C3%A7%C3%A3o%20%26%20Vendas%20do%20Widen%20Club." target="_blank" rel="noopener">QUERO ESSA IMERSÃO</a>
+        </div>
+      </div>
+      <div class="im-media" data-r="scale" data-d="150">
+        <div class="im-strip">
+          <div class="im-track">
+        <figure><img src="img/v1.jpg" alt="Nathan Sena conduzindo a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v2.jpg" alt="Turma acompanhando a apresentação" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v3.jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v4.jpg" alt="Conteúdo aplicado ao vivo" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v5.jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v6.jpg" alt="Turma reunida na sala" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/v7.jpg" alt="Grupo reduzido em volta da mesa" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v3.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v4.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="im rev">
+      <div class="im-txt">
+        <span class="im-no" data-r="up">02</span>
+        <h2 data-r="up" data-d="80" data-fit="20">Liderança &amp;<br>Gestão de Pessoas</h2>
+        <span class="who" data-r="up" data-d="140">COM KAREN KIEL</span>
+        <p class="d" data-r="up" data-d="200">Para quem lidera (ou vai liderar) um time e quer parar de apagar incêndio. Como dar direção, cobrar resultado e desenvolver pessoas sem ser o gargalo da operação.</p>
+        <ul data-r="up" data-d="260">
+          <li><b></b><span><strong>Gestão de pessoas</strong><em>Contratação, desenvolvimento, performance e retenção.</em></span></li>
+          <li><b></b><span><strong>Liderança</strong><em>Como conduzir, direcionar e desenvolver a equipe.</em></span></li>
+          <li><b></b><span><strong>Comunicação e feedback</strong><em>Conversas, alinhamentos e cobranças mais assertivas.</em></span></li>
+          <li class="mais"><b></b><span><strong>E vários outros pontos</strong><em>O conteúdo completo é ajustado ao cenário da turma, ao vivo.</em></span></li>
+        </ul>
+        <div data-r="up" data-d="320">
+          <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Imers%C3%A3o%20Lideran%C3%A7a%20%26%20Gest%C3%A3o%20de%20Pessoas%20do%20Widen%20Club." target="_blank" rel="noopener">QUERO ESSA IMERSÃO</a>
+        </div>
+      </div>
+      <div class="im-media" data-r="scale" data-d="150">
+        <div class="im-strip">
+          <div class="im-track">
+        <figure><img src="img/k6.jpg" alt="Karen Kiel conduzindo a imersão de Liderança e Gestão de Pessoas" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/k1.jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/k4.jpg" alt="Karen Kiel conduzindo a aula para a turma" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/k3.jpg" alt="Turma acompanhando a apresentação da Karen Kiel" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/k2.jpg" alt="Karen Kiel durante a imersão" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/k5.jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k6.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k4.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k2.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure aria-hidden="true"><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= PROBLEMA ================= -->
+<section id="problema" style="padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(56px,6.5vw,100px)">
+  <div>
+    <div class="st">
+      <div class="word l" data-px="0.10" aria-hidden="true">CLIENTE</div>
+      <div class="st-in"><div class="st-box" data-r="blur">
+        <span class="i">01 / PROSPECÇÃO</span>
+        <p>O problema não é falta de cliente.<br><span style="color:var(--a)">É falta de um processo para encontrá-lo.</span></p>
+      </div></div>
+    </div>
+    <div class="st e">
+      <div class="word r" data-px="-0.10" aria-hidden="true">TODO MUNDO</div>
+      <div class="st-in"><div class="st-box" data-r="blur">
+        <span class="i">02 / POSICIONAMENTO</span>
+        <p>Quem quer vender para todo mundo,<br><span style="color:var(--a)">não vende para ninguém.</span></p>
+      </div></div>
+    </div>
+    <div class="st">
+      <div class="word l" data-px="0.12" aria-hidden="true">VONTADE</div>
+      <div class="st-in"><div class="st-box" data-r="blur">
+        <span class="i">03 / PERFORMANCE</span>
+        <p>Nem todo problema de performance<br><span style="color:var(--a)">é falta de vontade.</span></p>
+      </div></div>
+    </div>
+    <div class="st e">
+      <div class="word r" data-px="-0.08" aria-hidden="true">DESENVOLVER</div>
+      <div class="st-in"><div class="st-box" data-r="blur">
+        <span class="i">04 / GESTÃO DE PESSOAS</span>
+        <p>Contratar bem é importante.<br><span style="color:var(--a)">Desenvolver bem é essencial.</span></p>
+      </div></div>
+    </div>
+    <div class="st fin">
+      <div class="word c" data-px="0.06" aria-hidden="true">SORTE</div>
+      <div class="st-in" style="justify-content:center"><div class="st-box" data-r="blur" style="text-align:center;align-items:center">
+        <span class="i">O WIDEN CLUB EXISTE PARA ISSO</span>
+        <p>Quem não tem processo de vendas<br><span style="color:var(--a)">vai depender da sorte.</span></p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(30px,3.5vw,50px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;gap:16px 32px" data-r="up">
+    <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">QUERO PARTICIPAR</a>
+    <span class="hint">Quatro horas para sair do improviso.</span>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= GALERIA ================= -->
+<section class="sec" id="galeria" style="overflow:hidden">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.2vw,50px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <span class="mono" data-r="up">TURMAS ANTERIORES</span>
+        <h2 data-r="up" data-d="100" style="font-size:clamp(32px,3.8vw,56px);line-height:1;max-width:560px">Widen Club acontecendo</h2>
+      </div>
+      <div data-r="up" data-d="200" style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:clamp(72px,13vw,200px);font-weight:800;line-height:.8;letter-spacing:-.06em;color:var(--a)">ATÉ 08</span>
+        <span style="font-size:clamp(15px,1.4vw,19px);color:var(--mut);max-width:420px">participantes por turma. Acompanhamento próximo, do começo ao fim.</span>
+      </div>
+    </div>
+
+    <div class="mural">
+      <div class="cell c2 r2" data-r="scale"><img src="img/v2.jpg" alt="Nathan Sena conduzindo a imersão para a turma" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="60"><img src="img/k1.jpg" alt="Karen Kiel conduzindo a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell r2" data-r="scale" data-d="120"><img src="img/v5.jpg" alt="Participantes acompanhando a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="180"><img src="img/l2.jpg" alt="Dinâmica em grupo na imersão" loading="lazy" decoding="async"></div>
+      <div class="cell c2" data-r="scale" data-d="240"><img src="img/k5.jpg" alt="Imersão de Liderança e Gestão de Pessoas no Widen Workspace" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="300"><img src="img/v3.jpg" alt="Participante durante a imersão" loading="lazy" decoding="async"></div>
+      <div class="cell" data-r="scale" data-d="360"><img src="img/k3.jpg" alt="Karen Kiel apresentando para a turma" loading="lazy" decoding="async"></div>
+      <div class="cell c2" data-r="scale" data-d="420"><img src="img/l6.jpg" alt="Turma interagindo durante a atividade" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+
+  <div class="mq" aria-label="Fotos das turmas">
+    <div class="mq-t">
+      <figure><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
+      <figure><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
+      <figure><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
+      <figure><img src="img/l2.jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
+      <figure><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
+      <figure><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
+      <figure><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
+      <figure><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
+      <figure><img src="img/l6.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
+      <figure><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/v2.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AULA</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/k1.jpg" alt="" loading="lazy" decoding="async"><figcaption>KAREN KIEL CONDUZINDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/v1.jpg" alt="" loading="lazy" decoding="async"><figcaption>NATHAN SENA CONDUZINDO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/l2.jpg" alt="" loading="lazy" decoding="async"><figcaption>DINÂMICA EM GRUPO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/v5.jpg" alt="" loading="lazy" decoding="async"><figcaption>TURMA EM AÇÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/k3.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA & GESTÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/k5.jpg" alt="" loading="lazy" decoding="async"><figcaption>LIDERANÇA &amp; GESTÃO</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/v6.jpg" alt="" loading="lazy" decoding="async"><figcaption>WIDEN WORKSPACE</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/l6.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO EM ATIVIDADE</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/v7.jpg" alt="" loading="lazy" decoding="async"><figcaption>GRUPO REDUZIDO</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="wrap gal-cta" data-r="up">
+    <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20participar%20da%20Imers%C3%A3o%20Prospec%C3%A7%C3%A3o%20%26%20Vendas%20do%20Widen%20Club." target="_blank" rel="noopener">PARTICIPAR DA IMERSÃO DE VENDAS</a>
+    <a class="btn ghost" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20participar%20da%20Imers%C3%A3o%20Lideran%C3%A7a%20%26%20Gest%C3%A3o%20de%20Pessoas%20do%20Widen%20Club." target="_blank" rel="noopener">PARTICIPAR DA IMERSÃO DE PESSOAS</a>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= QUEM CONDUZ ================= -->
+<section class="sec panel" id="conduz">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(32px,3.4vw,52px)">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span class="mono acc" data-r="up">QUEM CONDUZ</span>
+      <h2 style="font-size:clamp(32px,4.2vw,62px);line-height:.95">
+        <span class="lw"><span data-r="line">Quem está na sala com você</span></span>
+      </h2>
+    </div>
+    <div class="hosts">
+      <article class="host" data-r="up">
+        <div class="ph"><img src="img/nathan.jpg" width="864" height="1152" style="--focus:3%" alt="Nathan Sena" loading="lazy" decoding="async"></div>
+        <div class="host-txt">
+          <p class="role" data-fit="7">GESTOR &amp; LÍDER COMERCIAL · WIDEN</p>
+          <h3>Nathan<br>Sena</h3>
+          <a class="host-ig" href="https://www.instagram.com/nathansena/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5" fill="none"/><circle cx="12" cy="12" r="3.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.25" fill="currentColor" stroke="none"/></svg>@nathansena</a>
+          <p class="bio">Especialista em vendas, processos comerciais e automação, com experiência na criação e estruturação de operações comerciais. Fundador da Widen desde 2009, conduz a Imersão de Prospecção &amp; Vendas, transformando estratégias comerciais em processos práticos para gerar performance, previsibilidade e resultados.</p>
+        </div>
+      </article>
+      <article class="host" data-r="up" data-d="140">
+        <div class="ph"><img src="img/karen.jpg" width="800" height="1072" style="--focus:9%" alt="Karen Kiel" loading="lazy" decoding="async"></div>
+        <div class="host-txt">
+          <p class="role" data-fit="7">LIDERANÇA &amp; GESTÃO DE PESSOAS · WIDEN</p>
+          <h3>Karen<br>Kiel</h3>
+          <a class="host-ig" href="https://www.instagram.com/kielkaren/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5" fill="none"/><circle cx="12" cy="12" r="3.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.25" fill="currentColor" stroke="none"/></svg>@kielkaren</a>
+          <p class="bio">Mais de 15 anos de experiência em Gestão de Pessoas e Liderança, traduzindo práticas reais em decisões simples, aplicáveis e com resultado para empresas. Conduz a imersão de Liderança &amp; Gestão de Pessoas, trabalhando papel do líder, rotina de gestão, desenvolvimento de time e as conversas que a maioria dos gestores adia.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= LOCAL ================= -->
+<section class="sec" id="local" style="overflow:hidden">
+  <div class="ghost-word" data-px="0.12" aria-hidden="true">VILA VELHA</div>
+  <div class="wrap" style="position:relative">
+    <span class="mono acc" data-r="up">ONDE ACONTECE</span>
+    <h2 style="margin-top:14px;font-size:clamp(32px,4.2vw,62px);line-height:.95">
+      <span class="lw"><span data-r="line">Widen <span style="color:var(--a)">Workspace</span></span></span>
+    </h2>
+
+    <div class="locgrid" data-r="up" data-d="200">
+      <div class="loc">
+        <span class="k">ENDEREÇO</span>
+        <div class="v" data-fit="14">Coworking Vila Velha - Widen</div>
+        <div class="x">Coqueiral de Itaparica em Vila Velha/ES</div>
+      </div>
+      <div class="loc">
+        <span class="k">FORMATO</span>
+        <div class="v" data-fit="14">100% presencial</div>
+        <div class="x">Turma fechada de até 8 pessoas, com acompanhamento próximo.</div>
+      </div>
+      <div class="loc">
+        <span class="k">DURAÇÃO</span>
+        <div class="v" data-fit="14">4 horas por imersão</div>
+        <div class="x">Networking qualificado e Coffee break incluso.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(28px,3.2vw,44px);display:flex;flex-wrap:wrap;justify-content:center;gap:12px" data-r="up" data-d="260">
+      <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20as%20datas%20das%20pr%C3%B3ximas%20turmas%20do%20Widen%20Club." target="_blank" rel="noopener">VER PRÓXIMAS TURMAS</a>
+      <a class="btn ghost" href="https://share.google/EFhFALzWMwMmSe4jK" target="_blank" rel="noopener">COMO CHEGAR</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= FAQ ================= -->
+<section class="sec panel" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="faq-l">
+      <div class="stk">
+        <span class="mono" data-r="up">FAQ</span>
+        <h2 style="font-size:clamp(38px,5vw,78px);line-height:.9">
+          <span class="lw"><span data-r="line">Tire suas</span></span>
+          <span class="lw"><span data-r="line" data-d="120" style="color:var(--dim)">dúvidas</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="faq-r" id="faqList">
+      <div class="qa open" data-r="up">
+        <h3 style="margin:0"><button type="button" aria-expanded="true"><span>Quais são as imersões?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>Duas: <strong>Prospecção &amp; Vendas</strong>, com Nathan Sena, para estruturar o processo comercial; e <strong>Liderança &amp; Gestão de Pessoas</strong>, com Karen Kiel, para quem precisa fazer o time andar sem depender de você. Cada uma tem 4 horas e acontece em turma própria.</p></div></div>
+      </div>
+      <div class="qa" data-r="up" data-d="60">
+        <h3 style="margin:0"><button type="button" aria-expanded="false"><span>Qual é o investimento?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>Valores, condições de parcelamento e datas das próximas turmas são passados direto no WhatsApp. Assim conseguimos indicar qual das duas imersões faz mais sentido para o seu momento antes de você decidir.</p></div></div>
+      </div>
+      <div class="qa" data-r="up" data-d="120">
+        <h3 style="margin:0"><button type="button" aria-expanded="false"><span>Onde e quando acontecem?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>As duas são 100% presenciais, no Widen Workspace, na Rua 7 de Junho, 33, Sala 507, Coqueiral de Itaparica, Vila Velha/ES. As turmas são fechadas, com até 8 participantes, e as datas são confirmadas no WhatsApp.</p></div></div>
+      </div>
+      <div class="qa" data-r="up" data-d="180">
+        <h3 style="margin:0"><button type="button" aria-expanded="false"><span>Posso fazer as duas?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>Pode, e muita gente faz. Elas são independentes e acontecem em turmas separadas. Se for o seu caso, fale com a gente que montamos a sequência com você.</p></div></div>
+      </div>
+      <div class="qa" data-r="up" data-d="240">
+        <h3 style="margin:0"><button type="button" aria-expanded="false"><span>Para quem é?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>Empresários, gestores e profissionais que já têm operação rodando e querem estruturar o que hoje depende de improviso, seja no comercial, seja na gestão do time. Não é palestra nem conteúdo introdutório.</p></div></div>
+      </div>
+      <div class="qa" data-r="up" data-d="300">
+        <h3 style="margin:0"><button type="button" aria-expanded="false"><span>Como faço para participar?</span><span class="ic" aria-hidden="true">+</span></button></h3>
+        <div class="panel"><div><p>Clique em qualquer botão e entre em contato com nosso time. A gente confirma a imersão, a data da próxima turma e as condições. Como são até 8 vagas, nem sempre há turma aberta para entrada imediata.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta">
+  <div class="halo" aria-hidden="true"></div>
+  <span class="mono" data-r="up" style="position:relative" data-fit="7">PRESENCIAL · VILA VELHA/ES · ATÉ 8 VAGAS</span>
+  <h2 data-r="up" data-d="100">Processo no comercial. Processo na gestão.</h2>
+  <div data-r="scale" data-d="200" style="position:relative;width:100%;max-width:680px;display:flex;justify-content:center">
+    <a class="btn" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">ENTRAR NA WIDEN CLUB</a>
+  </div>
+  <p class="hint" data-r="up" data-d="300" style="position:relative">Fale com a gente e descubra qual das duas imersões faz mais sentido para você.</p>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <a href="#topo" aria-label="Widen Club, início"><img src="img/logo.png" width="520" height="264" alt="Widen Club"></a>
+        <p>Comunidade e experiência prática da Widen para empresários que querem estruturar crescimento através de marca, aquisição, vendas e gestão.</p>
+        <ul class="f-social">
+          <li><a href="https://instagram.com/widenclub" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5" fill="none"/><circle cx="12" cy="12" r="3.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.25" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a href="https://wa.me/5527996971809" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.95-.93 1.15-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5-.17 0-.37-.03-.56-.03-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46 0 1.45 1.06 2.85 1.2 3.05.16.2 2.09 3.19 5.06 4.47.71.3 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.56-.35ZM12.05 21.8h-.01a9.76 9.76 0 0 1-4.97-1.36l-.36-.21-3.7.97.99-3.6-.23-.37A9.74 9.74 0 1 1 12.05 21.8ZM20.5 3.5A11.76 11.76 0 0 0 2.05 17.68L.5 23.5l5.96-1.56a11.77 11.77 0 0 0 5.6 1.43h.01A11.77 11.77 0 0 0 20.5 3.5Z"/></svg>
+          </a></li>
+          <li><a href="https://share.google/EFhFALzWMwMmSe4jK" target="_blank" rel="noopener" aria-label="Como chegar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <div class="f-cols">
+        <div>
+          <h3>IMERSÕES</h3>
+          <ul>
+            <li><a href="#imersoes">Prospecção &amp; Vendas</a></li>
+            <li><a href="#imersoes">Liderança &amp; Gestão de Pessoas</a></li>
+            <li><a href="#conduz">Quem conduz</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>WIDEN CLUB</h3>
+          <ul>
+            <li><a href="#problema">O problema</a></li>
+            <li><a href="#galeria">Turmas anteriores</a></li>
+            <li><a href="#local">Onde acontece</a></li>
+            <li><a href="#faq">Perguntas frequentes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>CONTATO</h3>
+          <ul class="f-contact">
+            <li><a href="https://wa.me/5527996971809" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.95-.93 1.15-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5-.17 0-.37-.03-.56-.03-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46 0 1.45 1.06 2.85 1.2 3.05.16.2 2.09 3.19 5.06 4.47.71.3 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.56-.35ZM12.05 21.8h-.01a9.76 9.76 0 0 1-4.97-1.36l-.36-.21-3.7.97.99-3.6-.23-.37A9.74 9.74 0 1 1 12.05 21.8ZM20.5 3.5A11.76 11.76 0 0 0 2.05 17.68L.5 23.5l5.96-1.56a11.77 11.77 0 0 0 5.6 1.43h.01A11.77 11.77 0 0 0 20.5 3.5Z"/></svg>
+              27 99697-1809</a></li>
+            <li><a href="https://instagram.com/widenclub" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5" fill="none"/><circle cx="12" cy="12" r="3.7" fill="none"/><circle cx="17.3" cy="6.7" r="1.25" fill="currentColor" stroke="none"/></svg>
+              @widenclub</a></li>
+            <li><a href="https://share.google/EFhFALzWMwMmSe4jK" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+              Widen Workspace</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-bot">
+      <p>© 2026 Widen Club. Todos os direitos reservados.</p>
+      <ul>
+        <li><a href="#">Política de privacidade</a></li>
+        <li><a href="#">Termos de uso</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine   = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* flow buttons: envolve o texto, injeta círculo e as duas setas */
+  var ARROW = '<svg class="arr {s}" viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  document.querySelectorAll('.btn').forEach(function(b){
+    if (b.querySelector('.t')) return;
+    var t = document.createElement('span');
+    t.className = 't';
+    while (b.firstChild) t.appendChild(b.firstChild);
+    b.innerHTML = ARROW.replace('{s}','l') + '<span class="circle"></span>' + ARROW.replace('{s}','r');
+    b.insertBefore(t, b.children[1]);
+  });
+
+  /* alinha o topo do carrossel com o topo do paragrafo da imersao */
+  function alignStrips(){
+    document.querySelectorAll(".im").forEach(function(im){
+      var media = im.querySelector(".im-media");
+      var txt   = im.querySelector(".im-txt");
+      var par   = im.querySelector(".im-txt p.d");
+      if (!media || !txt || !par) return;
+      media.style.marginTop = "";
+      if (innerWidth < 900) return;
+      var off = par.getBoundingClientRect().top - txt.getBoundingClientRect().top;
+      if (off > 0) media.style.marginTop = Math.round(off) + "px";
+    });
+  }
+  alignStrips();
+  addEventListener("resize", alignStrips, {passive:true});
+  addEventListener("load", alignStrips);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(alignStrips);
+
+  /* [data-fit]: textos que nao podem quebrar linha.
+     Mede a largura real contra o container e reduz o corpo ate caber.
+     No desktop tudo ja cabe e o laco nem roda. */
+  var fitEls = [].slice.call(document.querySelectorAll("[data-fit]"));
+  function fitLines(){
+    fitEls.forEach(function(el){
+      el.style.fontSize = "";
+      var box = el.parentElement;
+      if (!box) return;
+      var cs = getComputedStyle(box);
+      var avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (!(avail > 0)) return;
+      var min  = parseFloat(el.getAttribute("data-fit")) || 10;
+      var size = parseFloat(getComputedStyle(el).fontSize);
+      var guard = 80;
+      /* scrollWidth pega o texto que transborda de um bloco; offsetWidth pega
+         a largura propria de quem encolhe para o conteudo, como o badge */
+      while (guard-- > 0 && size > min &&
+             Math.max(el.scrollWidth, el.offsetWidth) > avail) {
+        size -= 0.5;
+        el.style.fontSize = size + "px";
+      }
+    });
+  }
+  var fitQueued = false;
+  function queueFit(){
+    if (fitQueued) return;
+    fitQueued = true;
+    requestAnimationFrame(function(){ fitQueued = false; fitLines(); });
+  }
+  fitLines();
+  addEventListener("resize", queueFit, {passive:true});
+  addEventListener("orientationchange", queueFit);
+  /* as metricas so sao reais depois que a Manrope carrega */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLines);
+
+  /* menu mobile */
+  var navBtn = document.getElementById("navBtn");
+  var hd = document.getElementById("hdr");
+  if (navBtn && hd) {
+    navBtn.addEventListener("click", function(e){
+      e.stopPropagation();
+      var open = hd.classList.toggle("open");
+      navBtn.setAttribute("aria-expanded", open);
+    });
+    hd.querySelectorAll(".mnav a").forEach(function(a){
+      a.addEventListener("click", function(){
+        hd.classList.remove("open");
+        navBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+    document.addEventListener("click", function(e){
+      if (!hd.contains(e.target)) {
+        hd.classList.remove("open");
+        navBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* header */
+  var hdr = document.getElementById('hdr');
+  addEventListener('scroll', function(){ hdr.classList.toggle('on', scrollY > 24); }, {passive:true});
+
+  /* reveal */
+  var els = document.querySelectorAll('[data-r]');
+  els.forEach(function(el){
+    var d = el.getAttribute('data-d');
+    if (d) el.style.transitionDelay = (parseInt(d,10)/1000) + 's';
+  });
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* carrosseis: so animam enquanto estao na tela.
+     Fora dela custavam bateria e frames no mobile, onde o pause no :hover nunca dispara. */
+  [].slice.call(document.querySelectorAll('.im-strip,.mq')).forEach(function(box){
+    var track = box.querySelector('.im-track,.mq-t');
+    if (!track) return;
+    if (!('IntersectionObserver' in window)) return;
+    track.classList.add('pz');
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        track.classList.toggle('pz', !e.isIntersecting);
+        /* ao entrar pela 1a vez, carrega a faixa inteira: o lazy sozinho deixaria
+           buracos nas fotos que ainda estao fora da viewport, a direita */
+        if (e.isIntersecting && !track.dataset.loaded) {
+          track.dataset.loaded = '1';
+          track.querySelectorAll('img[loading="lazy"]').forEach(function(img){ img.loading = 'eager'; });
+        }
+      });
+    }, {rootMargin:'200px 0px'}).observe(box);
+  });
+
+  /* parallax: leitura de layout a cada scroll, so no desktop */
+  var px = fine ? [].slice.call(document.querySelectorAll("[data-px]")) : [];
+  if (px.length && !reduce) {
+    var ticking = false;
+    var run = function(){
+      var vh = innerHeight;
+      px.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var k = parseFloat(el.getAttribute('data-px')) || 0;
+        var mid = r.top + r.height/2 - vh/2;
+        el.style.transform = 'translate3d(0,' + (mid * k).toFixed(1) + 'px,0)';
+      });
+      ticking = false;
+    };
+    addEventListener('scroll', function(){
+      if (ticking) return; ticking = true; requestAnimationFrame(run);
+    }, {passive:true});
+    addEventListener('resize', run, {passive:true});
+    run();
+  }
+
+  /* faq */
+  document.querySelectorAll('.qa button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var qa = btn.closest('.qa');
+      var open = qa.classList.contains('open');
+      qa.parentNode.querySelectorAll('.qa').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('button').setAttribute('aria-expanded','false');
+      });
+      if (!open) { qa.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* lenis: scroll suave so no desktop. No touch ele nao suaviza nada (smoothTouch
+     desligado) e mesmo assim rodaria rAF sem parar, entao nem baixamos o script. */
+  var lenis = null;
+  if (!reduce && fine) {
+    var ls = document.createElement('script');
+    ls.src = 'https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js';
+    ls.async = true;
+    ls.onload = function(){
+      if (!window.Lenis) return;
+      lenis = new Lenis({
+        duration: 1.15,
+        easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true,
+        touchMultiplier: 1.6
+      });
+      (function raf(time){ lenis.raf(time); requestAnimationFrame(raf); })();
+    };
+    document.head.appendChild(ls);
+  }
+
+  /* âncoras com offset do header fixo */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      var h = a.getAttribute('href');
+      if (!h || h === '#') return;
+      var t = document.querySelector(h);
+      if (!t) return;
+      ev.preventDefault();
+      if (lenis) { lenis.scrollTo(t, {offset:-76}); return; }
+      var y = t.getBoundingClientRect().top + scrollY - 76;
+      scrollTo({top:y, behavior: reduce ? 'auto' : 'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
