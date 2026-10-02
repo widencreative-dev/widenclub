@@ -390,7 +390,7 @@ header.open .mnav{display:flex}
 /* ---------- faq ---------- */
 .faq-wrap{display:flex;flex-wrap:wrap;gap:clamp(30px,4vw,64px)}
 .faq-l{flex:1 1 300px;min-width:0}
-.faq-l .stk{position:sticky;top:110px;display:flex;flex-direction:column;gap:24px}
+.faq-l .stk{position:sticky;top:110px;display:flex;flex-direction:column;gap:22px}
 .faq-r{flex:2 1 520px;min-width:0;border-bottom:1px solid var(--ln)}
 .qa{border-top:1px solid var(--ln)}
 .qa button{appearance:none;background:none;border:0;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(17px,2vw,24px) 0;text-align:left;color:var(--fg);font-family:Manrope,sans-serif;font-size:clamp(17px,1.6vw,22px);font-weight:700;letter-spacing:-.01em}
@@ -435,6 +435,47 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 @media (min-width:768px){.f-bot ul{flex-direction:row;gap:26px}}
 .f-bot a{color:var(--dim);transition:color .2s ease}
 .f-bot a:hover{color:var(--a)}
+
+/* ---------- voltar ao inicio ---------- */
+/* so aparece quando o rodape entra na tela; o observer esta no script.
+   Escondido ele perde o pointer-events: um alvo invisivel de 48px no canto
+   roubaria o toque de quem tenta rolar ali. */
+.totop{position:fixed;z-index:56;
+  right:max(18px,env(safe-area-inset-right));
+  bottom:max(18px,env(safe-area-inset-bottom));
+  height:48px;min-width:48px;border-radius:999px;display:inline-flex;align-items:center;justify-content:flex-end;
+  background:var(--a);color:var(--bg);
+  border:1.5px solid transparent;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  opacity:0;transform:translateY(14px) scale(.92);pointer-events:none;
+  transition:opacity .4s ease,transform .5s cubic-bezier(.2,.7,.2,1),background .25s ease,border-color .25s ease,color .25s ease}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop .ic{flex:0 0 48px;height:48px;display:flex;align-items:center;justify-content:center}
+.totop svg{width:19px;height:19px}
+/* o rotulo sai de dentro do circulo no hover: max-width de 0 para 170px. E
+   max-width e nao width porque width:auto nao e animavel; o elemento esta
+   ancorado pela direita, entao crescer empurra a borda esquerda para fora. */
+.totop .t{max-width:0;opacity:0;overflow:hidden;white-space:nowrap;padding-left:0;
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  transition:max-width .45s cubic-bezier(.2,.7,.2,1),
+             padding-left .45s cubic-bezier(.2,.7,.2,1),
+             opacity .3s ease}
+/* teclado tambem abre: quem navega por Tab nao tem hover */
+.totop:focus-visible .t{max-width:170px;opacity:1;padding-left:18px}
+@media (hover:hover) and (pointer:fine){
+  .totop:hover{background:var(--bg);color:var(--a);border-color:var(--a)}
+  .totop:hover .t{max-width:170px;opacity:1;padding-left:18px}
+}
+/* transicao curta propria: o transform do bloco acima leva .5s e o clique
+   pareceria nao responder */
+.totop:active{transform:scale(.93);transition:transform .12s ease}
+.totop:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+/* com movimento reduzido ele aparece sem subir nem crescer */
+@media (prefers-reduced-motion:reduce){
+  .totop{transform:none;transition:opacity .2s ease}
+  .totop:active{transform:none}
+  .totop .t{transition:none}
+}
 
 /* ---------- ajustes de mobile ---------- */
 @media (max-width:759px){
@@ -829,11 +870,8 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
   <div class="wrap faq-wrap">
     <div class="faq-l">
       <div class="stk">
-        <span class="mono" data-r="up">FAQ</span>
-        <h2 style="font-size:clamp(38px,5vw,78px);line-height:.9">
-          <span class="lw"><span data-r="line">Tire suas</span></span>
-          <span class="lw"><span data-r="line" data-d="120" style="color:var(--dim)">dúvidas</span></span>
-        </h2>
+        <span class="mono" data-r="up">DÚVIDAS</span>
+        <h2 data-r="up" data-d="100" style="font-size:clamp(32px,3.8vw,56px);line-height:1;max-width:560px">Tire suas dúvidas</h2>
       </div>
     </div>
     <div class="faq-r" id="faqList">
@@ -931,6 +969,11 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     </div>
   </div>
 </footer>
+
+<a class="totop" href="#topo">
+  <span class="t">Voltar ao início</span>
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+</a>
 
 <script>
 (function(){
@@ -1265,6 +1308,21 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
   }
 
   /* âncoras com offset do header fixo */
+  /* voltar ao inicio: entra em cena quando o rodape aparece e sai quando ele
+     deixa a tela. O clique nao precisa de codigo proprio: o href="#topo" cai
+     no handler de ancoras abaixo, que ja resolve o scroll suave e o Lenis. */
+  var toTop = document.querySelector('.totop');
+  var foot  = document.querySelector('footer');
+  if (toTop && foot) {
+    if (!('IntersectionObserver' in window)) {
+      toTop.classList.add('on');
+    } else {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ toTop.classList.toggle('on', e.isIntersecting); });
+      }, {rootMargin:'0px 0px -40px 0px'}).observe(foot);
+    }
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click', function(ev){
       var h = a.getAttribute('href');
