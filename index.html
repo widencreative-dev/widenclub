@@ -128,22 +128,39 @@ header.on{background:#050505b3;backdrop-filter:blur(14px);-webkit-backdrop-filte
 .brand{display:flex;align-items:center}
 .brand img{height:32px;width:auto}
 /* --- glassmorphism --- */
+/* liquid glass: o vidro plano virou volume. O degrade no fundo faz a luz cair
+   de cima, os dois rims internos desenham a espessura da borda (claro no topo,
+   fraco embaixo) e o ::before poe o brilho especular na metade de cima.
+   brightness() no filtro evita que o vidro escureca o que passa por tras. */
 .pill{
   display:none;align-items:center;gap:2px;padding:5px;border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(16px) saturate(160%);
-  -webkit-backdrop-filter:blur(16px) saturate(160%);
-  box-shadow:0 8px 32px rgba(0,0,0,.37);
+  position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04) 44%,rgba(255,255,255,.02) 58%,rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(22px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter:blur(22px) saturate(200%) brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(255,255,255,.10),
+    inset 0 0 22px rgba(255,255,255,.05),
+    0 10px 36px rgba(0,0,0,.46);
 }
-/* 1130: a pilula tem 5 itens e cabe quase no mesmo espaco dos 5 originais
-   ("Depoimentos" entrou no lugar de "O que trava"). Abaixo disso ela
-   encosta no botao de CTA a direita. */
-@media (min-width:1130px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
+.pill::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,0) 46%)}
+/* 1200: em maiusculo com tracking a pilula ganhou ~60px sobre a caixa mista.
+   O MESMO valor desliga o hamburguer mais abaixo: quando os dois numeros
+   divergiam sobrava uma faixa de viewport sem navegacao nenhuma. */
+@media (min-width:1200px){.pill{display:flex;position:absolute;left:50%;top:50%;translate:-50% -50%}}
+/* sem backdrop-filter o degrade translucido nao tem o que refratar: entra cor
+   solida, e o rim interno fica para a borda nao achatar */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .pill{background:rgba(20,20,26,.92)}
+  .pill,.nav-toggle{background:rgba(20,20,26,.94)}
+  .mnav{background:rgba(12,12,14,.97)}
+  .pill::before,.mnav::before{display:none}
 }
-.pill a{padding:10px 15px;border-radius:999px;font-size:13px;font-weight:600;color:rgba(255,255,255,.78);white-space:nowrap;
+/* z-index acima do ::before: pseudo posicionado pinta sobre filho sem posicao */
+.pill a{position:relative;z-index:1;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.78);white-space:nowrap;
   transition:color .25s ease,background .25s ease,transform .4s cubic-bezier(.34,1.56,.64,1)}
 /* o item salta: a curva passa do alvo e volta, dai a sensacao de pulo.
    3px cabem nos 5px de padding da pilula, entao nada vaza pela borda. */
@@ -152,15 +169,35 @@ header.on{background:#050505b3;backdrop-filter:blur(14px);-webkit-backdrop-filte
 }
 .hcta{display:none;--arr:14px;--inset:14px;padding:13px 20px;font-size:12px}
 @media (min-width:560px){.hcta{display:inline-flex}}
-.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);box-shadow:0 8px 32px rgba(0,0,0,.37);color:#ffffffe6;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04) 44%,rgba(255,255,255,.02) 58%,rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(22px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter:blur(22px) saturate(200%) brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(255,255,255,.10),
+    0 10px 36px rgba(0,0,0,.46);
+  color:#ffffffe6;cursor:pointer;padding:0;flex-shrink:0}
 .nav-toggle svg{width:19px;height:19px}
 .nav-toggle .x{display:none}
 header.open .nav-toggle .x{display:block}
 header.open .nav-toggle .m{display:none}
-@media (min-width:1120px){.nav-toggle{display:none}}
-.mnav{display:none;flex-direction:column;gap:2px;position:absolute;left:14px;right:14px;top:72px;padding:10px;border-radius:20px;background:rgba(10,10,10,.72);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);box-shadow:0 8px 32px rgba(0,0,0,.37)}
+@media (min-width:1200px){.nav-toggle{display:none}}
+.mnav{display:none;flex-direction:column;gap:2px;position:absolute;left:14px;right:14px;top:72px;padding:10px;border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.02) 38%),rgba(10,10,10,.6);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(26px) saturate(190%) brightness(1.06);
+  -webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(255,255,255,.07),
+    0 18px 48px rgba(0,0,0,.5)}
+.mnav::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 40%)}
 header.open .mnav{display:flex}
-.mnav a{padding:13px 15px;border-radius:12px;font-size:14px;font-weight:600;color:#ffffffb3}
+.mnav a{position:relative;z-index:1;padding:13px 15px;border-radius:12px;font-size:13.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.04em;color:#ffffffb3}
 .mnav a:hover{background:#ffffff0f;color:#fff}
 .mnav .mnav-cta{margin-top:6px;text-align:center;background:var(--a);color:var(--bg);font-weight:800}
 .mnav .mnav-cta:hover{background:var(--a);color:var(--bg)}
@@ -473,10 +510,10 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 
     <nav class="pill" aria-label="Navegação principal">
       <a href="#imersoes">Imersões</a>
-      <a href="#conduz">Quem conduz</a>
-      <a href="#local">Onde acontece</a>
+      <a href="#conduz">Palestrantes</a>
+      <a href="#local">Local</a>
       <a href="#depoimentos">Depoimentos</a>
-      <a href="#faq">FAQ</a>
+      <a href="#faq">Dúvidas</a>
     </nav>
 
     <div class="hactions">
@@ -490,10 +527,10 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
 
   <nav class="mnav" aria-label="Navegação mobile">
     <a href="#imersoes">Imersões</a>
-    <a href="#conduz">Quem conduz</a>
-    <a href="#local">Onde acontece</a>
+    <a href="#conduz">Palestrantes</a>
+    <a href="#local">Local</a>
     <a href="#depoimentos">Depoimentos</a>
-    <a href="#faq">FAQ</a>
+    <a href="#faq">Dúvidas</a>
     <a class="mnav-cta" href="https://wa.me/5527996971809?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20imers%C3%B5es%20do%20Widen%20Club." target="_blank" rel="noopener">Quero participar</a>
   </nav>
 </header>
@@ -886,7 +923,7 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
           <ul>
             <li><a href="#imersoes">Prospecção &amp; Vendas</a></li>
             <li><a href="#imersoes">Liderança &amp; Gestão de Pessoas</a></li>
-            <li><a href="#conduz">Quem conduz</a></li>
+            <li><a href="#conduz">Palestrantes</a></li>
           </ul>
         </div>
         <div>
@@ -894,9 +931,9 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
           <ul>
             <li><a href="#problema">O que trava</a></li>
             <li><a href="#galeria">Turmas anteriores</a></li>
-            <li><a href="#local">Onde acontece</a></li>
+            <li><a href="#local">Local</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#faq">Perguntas frequentes</a></li>
+            <li><a href="#faq">Dúvidas</a></li>
           </ul>
         </div>
         <div>
