@@ -1,0 +1,24 @@
+name: Deploy cPanel
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Atualizar repositorio na hospedagem
+        env:
+          SSH_KEY: ${{ secrets.CPANEL_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H br992.hostgator.com.br >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes multil73@br992.hostgator.com.br \
+            "cd ~/repositories/widenclub && git fetch origin main && git reset --hard origin/main"
