@@ -18,6 +18,14 @@
 <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <meta name="theme-color" content="#050505">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2170863783746965');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2170863783746965&ev=PageView&noscript=1" alt=""></noscript>
+<!-- End Meta Pixel -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1336,6 +1344,13 @@ footer{border-top:1px solid var(--ln2);background:var(--bg);padding:clamp(48px,6
     });
   });
 })();
+</script>
+<script>
+/* Meta Pixel: evento Contact nos cliques para o WhatsApp */
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href*="wa.me"]');
+  if (a && window.fbq) fbq('track', 'Contact', {content_name: a.textContent.trim().slice(0,60)});
+});
 </script>
 </body>
 </html>
